@@ -1,10 +1,10 @@
 from flask import Flask, render_template
 from extensions import db, login_manager
 from models.user import User
-import config
 
 app = Flask(__name__)
-app.config.from_object(config)
+app.config['SECRET_KEY'] = 'secretkey'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://bookstore_user:bookstore_pass@172.31.20.165:3306/bookstore"
 
 db.init_app(app)
 login_manager.init_app(app)
