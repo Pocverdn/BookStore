@@ -9,6 +9,7 @@ COPY . .
 
 # Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install cryptography
 
 # Expone el puerto 5000 para Flask
 EXPOSE 5000
