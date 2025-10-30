@@ -65,27 +65,29 @@ spec:
       labels:
         app: flaskapp
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
-      - name: flaskapp
-        image: pocverdn/objetivo2:latest
-        ports:
-        - containerPort: 5000
-          name: flask
-        env:
-        - name: FLASK_ENV
-          value: production
-        - name: DATABASE_HOST
-          value: mysql-service
-        - name: DATABASE_USER
-          value: root
-        - name: DATABASE_PASSWORD
-          value: rootpassword
-        - name: DATABASE_NAME
-          value: bookstore
-        volumeMounts:
-        - name: flaskapp-persistent-storage
-          mountPath: /app/data
+        - name: flaskapp
+          image: pocverdn/objetivo2:latest
+          ports:
+            - containerPort: 5000
+              name: flask
+          env:
+            - name: FLASK_ENV
+              value: production
+            - name: DATABASE_HOST
+              value: mysql-service
+            - name: DATABASE_USER
+              value: root
+            - name: DATABASE_PASSWORD
+              value: rootpassword
+            - name: DATABASE_NAME
+              value: bookstore
+          volumeMounts:
+            - name: flaskapp-persistent-storage
+              mountPath: /app/data
       volumes:
-      - name: flaskapp-persistent-storage
-        persistentVolumeClaim:
-          claimName: flaskapp-efs-pvc
+        - name: flaskapp-persistent-storage
+          persistentVolumeClaim:
+            claimName: flaskapp-efs-pvc
