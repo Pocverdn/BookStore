@@ -65,8 +65,6 @@ spec:
       labels:
         app: flaskapp
     spec:
-      imagePullSecrets:
-        - name: dockerhub-secret
       containers:
         - name: flaskapp
           image: pocverdn/objetivo2:latest
